@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logoImg from "../../assets/logo.svg";
 import { Container } from "../../components/container";
 import { Input } from "../../components/input";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth } from "../../services/firebaseConnection";
 
 const schema = z.object({
   email: z
@@ -16,6 +19,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export function Login() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -25,8 +29,24 @@ export function Login() {
     mode: "onChange",
   });
 
+  useEffect(() => {
+    async function handleLogout() {
+      await signOut(auth);
+    }
+    handleLogout();
+  }, []);
+
   function onSubmit(data: FormData) {
-    console.log(data);
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((user) => {
+        console.log("LOGADO COM SUCESSO");
+        console.log(user);
+        navigate("/dashboard", { replace: true });
+      })
+      .catch((error) => {
+        console.log("ERRO AO EFETUAR LOGIN");
+        console.log(error);
+      });
   }
   return (
     <Container>
@@ -36,7 +56,7 @@ export function Login() {
         </Link>
 
         <form
-          className="bg-white max-w-xl w-full rounded-xl"
+          className="bg-white max-w-xl w-full rounded-xl p-7"
           onSubmit={handleSubmit(onSubmit)}
         >
           <div className="mb-3">
@@ -58,8 +78,14 @@ export function Login() {
             />
           </div>
 
-          <button>Acessar</button>
+          <button
+            className="w-full bg-black text-white rounded-2xl h-10 px-2 font-bold"
+            type="submit"
+          >
+            Acessar
+          </button>
         </form>
+        <Link to="/register">Ainda não possui uma conta? Cadastre-se</Link>
       </div>
     </Container>
   );

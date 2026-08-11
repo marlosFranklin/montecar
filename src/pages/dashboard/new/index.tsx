@@ -9,7 +9,8 @@ import { Input } from "../../../components/input";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { v4 as uuidV4 } from "uuid";
-import { storage } from "../../../services/firebaseConnection";
+import { storage, db } from "../../../services/firebaseConnection";
+import { addDoc, collection } from "firebase/firestore";
 import {
   ref,
   uploadBytes,
@@ -56,7 +57,40 @@ export function New() {
   const [carImagem, setCarImagem] = useState<PropsCarImagem[]>([]);
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    if (carImagem.length === 0) {
+      alert("envie alguma imagem deste carro");
+    }
+
+    const carListImagem = carImagem.map((car) => {
+      return {
+        uid: car.uid,
+        name: car.name,
+        url: car.url,
+      };
+    });
+    addDoc(collection(db, "cars"), {
+      name: data.name,
+      model: data.model,
+      km: data.km,
+      year: data.year,
+      city: data.city,
+      price: data.price,
+      whatsapp: data.whatsapp,
+      description: data.description,
+      created: new Date(),
+      owner: user?.name,
+      uid: user?.uid,
+      images: carListImagem,
+    })
+      .then(() => {
+        reset();
+        setCarImagem([]);
+        console.log("cadastrado com sucesso ");
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("erro ao cadastrar ");
+      });
   };
 
   async function handleUpload(image: File) {

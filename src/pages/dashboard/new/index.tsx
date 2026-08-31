@@ -17,6 +17,7 @@ import {
   getDownloadURL,
   deleteObject,
 } from "firebase/storage";
+import toast from "react-hot-toast";
 
 const schema = z.object({
   name: z.string().nonempty("O campo nome é obrigatório"),
@@ -58,7 +59,7 @@ export function New() {
 
   const onSubmit = (data: FormData) => {
     if (carImagem.length === 0) {
-      alert("envie alguma imagem deste carro");
+      toast.error("envie alguma imagem deste carro");
     }
 
     const carListImagem = carImagem.map((car) => {
@@ -69,7 +70,7 @@ export function New() {
       };
     });
     addDoc(collection(db, "cars"), {
-      name: data.name,
+      name: data.name.toUpperCase(),
       model: data.model,
       km: data.km,
       year: data.year,
@@ -85,11 +86,11 @@ export function New() {
       .then(() => {
         reset();
         setCarImagem([]);
-        console.log("cadastrado com sucesso ");
+        toast.success("veiculo cadastrado com sucesso ");
       })
       .catch((err) => {
         console.log(err);
-        console.log("erro ao cadastrar ");
+        toast.error("erro ao cadastrar ");
       });
   };
 

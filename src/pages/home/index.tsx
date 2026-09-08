@@ -92,11 +92,14 @@ export function Home() {
           value={searchCar}
           onChange={(e) => setSearchCar(e.target.value)}
           type="text"
+          aria-label="Buscar veículo pelo nome"
           placeholder="digite o nome do carro "
           className="w-full border-gray-400 border rounded-lg h-9 px-3 outline-0  "
         />
         <button
           onClick={handleSearch}
+          type="button"
+          aria-label="Buscar veículos"
           className="bg-[#646406] h-9 px-8 rounded-lg text-white font-medium text-lg"
         >
           buscar
@@ -119,7 +122,7 @@ export function Home() {
               <img
                 className=" w-full rounded-lg mb-2 max-h-72 hover:scale-105 transition-all"
                 src={car.images[0].url}
-                alt="carro"
+                alt={`${car.name} à venda em ${car.city}`}
                 onLoad={() => handleImageLoad(car.id)}
                 style={{
                   display: loadImages.includes(car.id) ? "block" : " none",

@@ -5,6 +5,7 @@ import { Register } from "./pages/register";
 import { CarDetail } from "./pages/car";
 import { Dashboard } from "./pages/dashboard";
 import { New } from "./pages/dashboard/new";
+import { Edit } from "./pages/dashboard/edit";
 import { Private } from "./routes/Private";
 
 import { Layout } from "./components/layout";
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
           <Private>
             {" "}
             <New />
+          </Private>
+        ),
+      },
+      {
+        path: "/dashboard/edit/:id",
+        element: (
+          <Private>
+            <Edit />
           </Private>
         ),
       },

@@ -1,6 +1,6 @@
 import { Container } from "../../components/container";
 import { DashboardHeader } from "../../components/panelheader";
-import { FiTrash2 } from "react-icons/fi";
+import { FiEdit2, FiTrash2 } from "react-icons/fi";
 import { useState, useEffect, useContext } from "react";
 import { db, storage } from "../../services/firebaseConnection";
 import {
@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { ref, deleteObject } from "firebase/storage";
 import { AuthContext } from "../../contexts/AuthContext";
+import { Link } from "react-router-dom";
 
 interface CarsProps {
   id: string;
@@ -45,7 +46,7 @@ export function Dashboard() {
       const queryRef = query(carsRef, where("uid", "==", user?.uid));
 
       getDocs(queryRef).then((snapshot) => {
-        let listCars = [] as CarsProps[];
+        const listCars = [] as CarsProps[];
         snapshot.forEach((doc) => {
           listCars.push({
             id: doc.id,
@@ -85,12 +86,24 @@ export function Dashboard() {
       <main className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {cars.map((car) => (
           <section key={car.id} className="w-full bg-white rounded-lg relative">
-            <button
-              onClick={() => handleDeleteCar(car)}
-              className=" absolute bg-white w-14 h-14 rounded-full flex items-center justify-center  top-2 right-2 drop-shadow-2xl "
-            >
-              <FiTrash2 size={26} color="#000" />
-            </button>
+            <div className="absolute top-2 right-2 flex gap-2">
+              <Link
+                to={`/dashboard/edit/${car.id}`}
+                aria-label={`Editar ${car.name}`}
+                title="Editar veículo"
+                className="bg-white w-12 h-12 rounded-full flex items-center justify-center drop-shadow-2xl"
+              >
+                <FiEdit2 size={22} color="#000" />
+              </Link>
+              <button
+                onClick={() => handleDeleteCar(car)}
+                aria-label={`Excluir ${car.name}`}
+                title="Excluir veículo"
+                className="bg-white w-12 h-12 rounded-full flex items-center justify-center drop-shadow-2xl"
+              >
+                <FiTrash2 size={24} color="#000" />
+              </button>
+            </div>
             <img
               src={car.images[0].url}
               alt={`foto veiculo ${car.name}`}

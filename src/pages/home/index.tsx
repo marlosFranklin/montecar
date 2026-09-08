@@ -97,7 +97,7 @@ export function Home() {
         />
         <button
           onClick={handleSearch}
-          className="bg-red-500 h-9 px-8 rounded-lg text-white font-medium text-lg"
+          className="bg-[#646406] h-9 px-8 rounded-lg text-white font-medium text-lg"
         >
           buscar
         </button>

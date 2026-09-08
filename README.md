@@ -1,7 +1,4 @@
-#
 
-````js
-export default defineConfig([
   # MonteCar
 
   Marketplace de veículos desenvolvido com React e TypeScript. A aplicação permite que visitantes encontrem carros novos e usados, consultem os detalhes de cada anúncio e entrem em contato com o vendedor pelo WhatsApp.
@@ -102,7 +99,7 @@ export default defineConfig([
 
   ## Estrutura principal
 
-  ```text
+
   src/
   ├── components/       # Componentes reutilizáveis da interface
   ├── contexts/         # Contexto global de autenticação

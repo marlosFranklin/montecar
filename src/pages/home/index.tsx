@@ -100,7 +100,7 @@ export function Home() {
           onClick={handleSearch}
           type="button"
           aria-label="Buscar veículos"
-          className="bg-[#646406] h-9 px-8 rounded-lg text-white font-medium text-lg"
+          className="bg-blue-600 h-9 px-8 rounded-lg text-white font-medium text-lg"
         >
           buscar
         </button>

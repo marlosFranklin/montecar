@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { Link } from "react-router-dom";
-import logoImg from "../../assets/monte-car.png";
+import logoImg from "../../assets/fastlogo.png";
 import { FiUser, FiLogIn } from "react-icons/fi";
 
 export function Header() {

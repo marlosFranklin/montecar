@@ -12,6 +12,8 @@ dist
 dist-ssr
 *.local
 assets
+!src/assets/
+!src/assets/fastlogo.png
 
 # Editor directories and files
 .vscode/*

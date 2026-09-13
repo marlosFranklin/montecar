@@ -4,7 +4,12 @@
 
 Confira uma demonstração rápida da aplicação, apresentando suas principais funcionalidades e fluxo de navegação.
 
-https://github.com/user-attachments/assets/ed22644e-05e3-4844-890b-1a542fda1593
+<img width="800" height="450" alt="dynamic_vehicle_demo_final-ezgif com-optimize" src="https://github.com/user-attachments/assets/a2480847-80ab-47e9-b122-857e03afa14e" />
+
+## 🔗 Site
+
+https://montecar-psi.vercel.app/
+
 
 
 Marketplace de veículos desenvolvido com React e TypeScript. A aplicação permite que visitantes encontrem carros novos e usados, consultem os detalhes de cada anúncio e entrem em contato com o vendedor pelo WhatsApp.

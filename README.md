@@ -1,5 +1,12 @@
 # MonteCar
 
+## 🎥 Demonstração
+
+Confira uma demonstração rápida da aplicação, apresentando suas principais funcionalidades e fluxo de navegação.
+
+https://github.com/user-attachments/assets/ed22644e-05e3-4844-890b-1a542fda1593
+
+
 Marketplace de veículos desenvolvido com React e TypeScript. A aplicação permite que visitantes encontrem carros novos e usados, consultem os detalhes de cada anúncio e entrem em contato com o vendedor pelo WhatsApp.
 
 Usuários autenticados também podem cadastrar seus próprios veículos, visualizar os anúncios publicados e removê-los pelo painel de controle.
